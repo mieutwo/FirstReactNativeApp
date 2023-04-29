@@ -1,14 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name,setName] = useState("Mandy")
+
+  const clickMe = () => {
+    setName("Mieu")
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>Mandy Mieu</Text>
+      <Text style={styles.textStyle}>{name}</Text>
       <Text style={styles.textStyle}>This is react native</Text>
       <Button title='Click Me' color='red' onPress={()=>alert("Welcome to my app")} disabled={false}></Button>
-      <Button title='OK' color='white' onPress={()=>alert('More button stuff')}></Button>
+      <View style={styles.button}>
+        <Button title='Change' color='black' onPress={clickMe}></Button>
+      </View>
     </View>
   );
 }
@@ -27,5 +35,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontStyle: 'italic',
     backgroundColor: "white"
+  },
+  button: {
+    backgroundColor: 'red',
+    padding: 10,
+    margin: 20
   }
 });
