@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
   const [name,setName] = useState("Mandy")
   const [person,setPerson] = useState({name: 'bob',age: 30})
+  const [age,setAge] = useState(22)
 
   const clickMe = () => {
     setName("Mieu")
@@ -13,12 +14,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>{name}</Text>
-      <Text style={styles.textStyle}>My name is {person.name} and my age is {person.age}</Text>
-      <Button title='Click Me' color='red' onPress={()=>alert("Welcome to my app")} disabled={false}></Button>
-      <View style={styles.button}>
-        <Button title='Change' color='black' onPress={clickMe}></Button>
-      </View>
+      <Text style={styles.textStyle}>Enter your name: </Text>
+      <TextInput style={styles.input} onChangeText={(typedName)=>setName(typedName)} placeholder="Enter your name"/> 
+      <Text style={styles.textStyle}>Enter your name: </Text>
+      <TextInput style={styles.input} onChangeText={(typedAge)=>setAge(typedAge)} placeholder="Enter your age" keyboardType="numeric"/> 
+      <Text>My name is {name} and my age is {age} years.</Text>
     </View>
   );
 }
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -42,5 +42,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     padding: 10,
     margin: 20
+  },
+  input: {
+    borderColor: "black",
+    borderWidth: 1,
+    padding: 10,
+    margin: 10,
+    width: 150
   }
 });
